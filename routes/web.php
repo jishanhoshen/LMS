@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::prefix('services')->group(function () {
+    Route::prefix('categories')->group(function () {
         Route::get('/', [ServiceController::class, 'index'])->name('services');
         Route::post('store', [ServiceController::class, 'store'])->name('storeServices');
         Route::get('{id}/edit', [ServiceController::class, 'edit'])->name('editService');
