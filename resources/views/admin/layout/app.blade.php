@@ -4,14 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="title" content="Octo Soft">
+    <meta name="title" content="">
     <meta name="description"
-        content="Octo Soft is an information technology & animation production company based in Jashore, Khulna, Bangladesh. We are a team of skilled passionate people">
-    <meta name="keywords" content="Animation, Graphic Design, Promo Video, Website, Digital Printing, Interior Design">
+        content="">
+    <meta name="keywords" content="Animation, Graphic Design, Promo Video, Website">
     <meta name="robots" content="index, follow">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="language" content="English">
-    <meta name="author" content="Octo Soft">
+    <meta name="author" content="">
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -328,43 +328,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('services') }}"
-                                class="nav-link {{ request()->is('admin/services') ? 'active' : '' }}">
+                            <a href="{{ route('category') }}"
+                                class="nav-link {{ request()->is('admin/categories') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tasks"></i>
-                                <p>Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('portfolio') }}"
-                                class="nav-link {{ request()->is('admin/portfolio') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-sitemap"></i>
-                                <p>Portfolio</p>
+                                <p>Categories</p>
                             </a>
                         </li>
 
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link ">
-                                <i class="nav-icon fas fa-stream"></i>
-                                <p>
-                                    Testimonial
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Client</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Client List</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="nav-item ">
                             <a href="#" class="nav-link ">
                                 <i class="nav-icon fas fa-edit"></i>
@@ -391,8 +361,8 @@
                         <li class="nav-item">
                             <a href="{{ route('setting') }}"
                                 class="nav-link {{ request()->is('admin/setting') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-cogs"></i>
-                                <p>Setting</p>
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>Settings</p>
                             </a>
                         </li>
                         <li class="nav-item">

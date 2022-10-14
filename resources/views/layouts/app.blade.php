@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Laravel')}}</title>
-    <link rel="shortcut icon" href="assets/images/x-icon.png" type="image/x-icon">
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/x-icon.png') }}" type="image/x-icon">
 
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/icofont.min.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/lightcase.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body>
@@ -42,10 +42,10 @@
                 <div class="header-top-area">
                     <ul class="lab-ul left">
                         <li>
-                            <i class="icofont-ui-call"></i> <span>+800-123-4567 6587</span>
+                            <a href="tel:{{ $config->phone }}"> <i class="icofont-ui-call"></i> <span>{{ $config->phone }}</span> </a>
                         </li>
                         <li>
-                            <i class="icofont-location-pin"></i> Beverley, New York 224 USA
+                            <i class="icofont-location-pin"></i> {{ $config->address }}
                         </li>
                     </ul>
                     <ul class="lab-ul social-icons d-flex align-items-center">
@@ -65,66 +65,57 @@
             <div class="container">
                 <div class="header-wrapper">
                     <div class="logo">
-                        <a href="{{ route('home') }}"><img src="assets/images/logo/01.png" alt="logo"></a>
+                        <?php $logo = '01.png'; ?>
+                        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/' . $logo) }}"
+                                alt="{{ config('app.name') . '-logo' }}"></a>
                     </div>
                     <div class="menu-area">
                         <div class="menu">
                             <ul class="lab-ul">
                                 <li>
-                                    <a href="#0">Home</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="index.html" class="active">Home One</a></li>
-                                        <li><a href="index-2.html">Home Two</a></li>
-                                        <li><a href="index-3.html">Home Three</a></li>
-                                        <li><a href="index-4.html">Home Four</a></li>
-                                        <li><a href="index-5.html">Home Five</a></li>
-                                        <li><a href="index-6.html">Home Six</a></li>
-                                        <li><a href="index-7.html">Home Seven</a></li>
-                                    </ul>
+                                    <a href="{{ route('home') }}">Home</a>
                                 </li>
 
                                 <li>
-                                    <a href="#0">Courses</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="course.html">Course</a></li>
-                                        <li><a href="course-single.html">Course Details</a></li>
+                                    <a href="{{ route('all_course') }}">Courses</a>
+                                </li>
 
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#0">Blog</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="blog.html">Blog Grid</a></li>
-                                        <li><a href="blog-2.html">Blog Style 2</a></li>
-                                        <li><a href="blog-3.html">Blog Style 3</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#0">Pages</a>
-                                    <ul class="lab-ul">
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="team.html">Team</a></li>
-                                        <li><a href="instructor.html">Instructor</a></li>
-                                        <li>
-                                            <a href="#0">Shop Pages</a>
-                                            <ul class="lab-ul">
-                                                <li><a href="shop.html">Shop Page</a></li>
-                                                <li><a href="shop-single.html">Shop Details Page</a></li>
-                                                <li><a href="cart-page.html">Shop Cart Page</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="search-page.html">Search Page</a></li>
-                                        <li><a href="search-none.html">Search None</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                    </ul>
-                                </li>
                                 <li><a href="contact.html">Contact</a></li>
+                                @guest
+                                @if (Route::has('login'))
+                                    <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i> <span>LOG
+                                            IN</span></a>
+                                @endif
+    
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="signup"><i class="icofont-users"></i> <span>SIGN
+                                            UP</span> </a>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+    
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+    
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
                             </ul>
                         </div>
 
-                        <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i> <span>LOG IN</span> </a>
-                        <a href="{{ route('register') }}" class="signup"><i class="icofont-users"></i> <span>SIGN UP</span> </a>
+
+
 
                         <!-- toggle icons -->
                         <div class="header-bar d-lg-none">
@@ -149,8 +140,8 @@
     <!-- footer -->
     <div class="news-footer-wrap">
         <div class="fs-shape">
-            <img src="assets/images/shape-img/03.png" alt="fst" class="fst-1">
-            <img src="assets/images/shape-img/04.png" alt="fst" class="fst-2">
+            <img src="{{ asset('assets/images/shape-img/03.png') }}" alt="fst" class="fst-1">
+            <img src="{{ asset('assets/images/shape-img/04.png') }}" alt="fst" class="fst-2">
         </div>
         <!-- Newsletter Section Start Here -->
         <div class="news-letter">
@@ -274,14 +265,14 @@
     <!-- footer -->
 
 
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/progress.js"></script>
-    <script src="assets/js/lightcase.js"></script>
-    <script src="assets/js/counter-up.js"></script>
-    <script src="assets/js/isotope.pkgd.js"></script>
-    <script src="assets/js/functions.js"></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/progress.js') }}"></script>
+    <script src="{{ asset('assets/js/lightcase.js') }}"></script>
+    <script src="{{ asset('assets/js/counter-up.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.js') }}"></script>
+    <script src="{{ asset('assets/js/functions.js') }}"></script>
 
 </body>
 

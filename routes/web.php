@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +18,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear/route', [ConfigController::class, 'clearRoute']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::prefix('course')->group(function () {
+    Route::get('/', [CourseController::class, 'all'])->name('all_course');
+    Route::get('/view', [CourseController::class, 'view'])->name('view');
+    Route::get('{id}', [CourseController::class, 'single'])->name('single_course');
+});
 
 Auth::routes();
 
@@ -30,22 +38,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::prefix('categories')->group(function () {
-        Route::get('/', [ServiceController::class, 'index'])->name('services');
+        Route::get('/', [ServiceController::class, 'index'])->name('category');
         Route::post('store', [ServiceController::class, 'store'])->name('storeServices');
         Route::get('{id}/edit', [ServiceController::class, 'edit'])->name('editService');
         Route::post('update/{id}', [ServiceController::class, 'update'])->name('updateServices');
         Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('destroyService');
     });
-    Route::prefix('portfolio')->group(function ()
-    {
-       Route::get('/', [PortfolioController::class, 'index'])->name('portfolio'); 
-       Route::get('add', [PortfolioController::class, 'create'])->name('addPortfolio');
-       Route::post('store', [PortfolioController::class, 'store'])->name('storePortfolio');
-       Route::post('thumb', [PortfolioController::class, 'setThumb'])->name('addthumbPortfilio');
+
+    Route::prefix('portfolio')->group(function () {
+        Route::get('/', [PortfolioController::class, 'index'])->name('portfolio');
+        Route::get('add', [PortfolioController::class, 'create'])->name('addPortfolio');
+        Route::post('store', [PortfolioController::class, 'store'])->name('storePortfolio');
+        Route::post('thumb', [PortfolioController::class, 'setThumb'])->name('addthumbPortfilio');
     });
-    Route::prefix('setting')->group(function ()
-    {
-        Route::get('/', [SettingController::class, 'index'])->name('setting'); 
-        Route::post('logo', [SettingController::class, 'logostore'])->name('logostore'); 
+    Route::prefix('setting')->group(function () {
+        Route::get('/', [SettingController::class, 'index'])->name('setting');
+        Route::post('settingUpdate', [SettingController::class, 'settingUpdate'])->name('settingUpdate');
     });
 });

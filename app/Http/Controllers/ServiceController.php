@@ -22,13 +22,13 @@ class ServiceController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $btn = '<a href="' . route('editService', $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a> '
+                    $btn = '<div class="d-flex justify-content-between"><a href="' . route('editService', $row->id) . '" class="edit btn btn-primary btn-sm">Edit</a> '
                         .
                         ' 
                         <form action="'.route('destroyService', $row->id).'" id="serviceDelete'.$row->id.'" method="post" class="d-inline">
                             '.csrf_field().'
                             '.method_field("DELETE").'
-                            <button class="delete btn btn-danger  btn-sm" type="submit">Delete</button>
+                            <button class="delete btn btn-danger  btn-sm" type="submit" onclick="return confirm(`Are you Sure`)">Delete</button>
                         </form>
                         <script>
                             $("#serviceDelete'.$row->id.'").submit(function(e){
@@ -53,6 +53,7 @@ class ServiceController extends Controller
                                 });
                             });
                         </script>
+                        </div>
                         ';
 
                     return $btn;
@@ -150,6 +151,8 @@ class ServiceController extends Controller
         $service->icon = $data['serviceIcon'];
         if ($request->input('serviceStatus') == 'on') {
             $service->status = 0;
+        }else{
+            $service->status = 1;
         }
         $service->save();
         return redirect('/admin/categories');

@@ -40,9 +40,9 @@
                                             <textarea type="text" class="form-control" name="serviceDesc" id="serviceDesc"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <label for="serviceIcon">Category Icon Class </label> <span>( get class from <a
-                                                    href="https://fontawesome.com/v5/search"
-                                                    target="_blank">FontAwesome</a>)</span>
+                                            <label for="serviceIcon">Category Icon Class </label>
+                                            <span>( get class from <a href="https://icofont.com/icons"
+                                                    target="_blank">IcoFont</a>)</span>
                                             <input type="text" class="form-control" name="serviceIcon" id="serviceIcon"
                                                 placeholder="service">
                                         </div>
@@ -112,7 +112,7 @@
             var table = $('#service').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('services') }}",
+                ajax: "{{ route('category') }}",
                 columns: [{
                         data: 'name',
                         name: 'name'
