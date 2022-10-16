@@ -42,7 +42,8 @@
                 <div class="header-top-area">
                     <ul class="lab-ul left">
                         <li>
-                            <a href="tel:{{ $config->phone }}"> <i class="icofont-ui-call"></i> <span>{{ $config->phone }}</span> </a>
+                            <a href="tel:{{ $config->phone }}"> <i class="icofont-ui-call"></i>
+                                <span>{{ $config->phone }}</span> </a>
                         </li>
                         <li>
                             <i class="icofont-location-pin"></i> {{ $config->address }}
@@ -52,11 +53,15 @@
                         <li>
                             <p>Find us on : </p>
                         </li>
-                        <li><a href="#" class="fb"><i class="icofont-facebook-messenger"></i></a></li>
-                        <li><a href="#" class="twitter"><i class="icofont-twitter"></i></a></li>
-                        <li><a href="#" class="vimeo"><i class="icofont-vimeo"></i></a></li>
-                        <li><a href="#" class="skype"><i class="icofont-skype"></i></a></li>
-                        <li><a href="#" class="rss"><i class="icofont-rss-feed"></i></a></li>
+                        @foreach (json_decode($config->social) as $key => $item)
+                            @if ($key == 'facebook')
+                                <li><a href="{{ $item }}" class="fb"><i class="icofont-facebook-messenger"></i></a></li>
+                            @elseif($key == 'twitter')
+                                <li><a href="{{ $item }}" class="twitter"><i class="icofont-twitter"></i></a></li>
+                            @elseif($key == 'instagram')
+                                <li><a href="{{ $item }}" class="instagram"><i class="icofont-instagram"></i></a></li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -82,35 +87,39 @@
 
                                 <li><a href="contact.html">Contact</a></li>
                                 @guest
-                                @if (Route::has('login'))
-                                    <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i> <span>LOG
-                                            IN</span></a>
-                                @endif
-    
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="signup"><i class="icofont-users"></i> <span>SIGN
-                                            UP</span> </a>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
-                                    </a>
-    
-                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                    @if (Route::has('login'))
+                                        <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i>
+                                            <span>LOG
+                                                IN</span></a>
+                                    @endif
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="signup"><i class="icofont-users"></i>
+                                            <span>SIGN
+                                                UP</span> </a>
+                                    @endif
+                                @else
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
                                         </a>
-    
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
+
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @endguest
                             </ul>
                         </div>
 
@@ -146,18 +155,8 @@
         <!-- Newsletter Section Start Here -->
         <div class="news-letter">
             <div class="container">
-                <div class="section-wrapper">
-                    <div class="news-title">
-                        <h3>Want Us To Email You About Special Offers And Updates?</h3>
-                    </div>
-                    <div class="news-form">
-                        <form action="https://demos.codexcoder.com/">
-                            <div class="nf-list">
-                                <input type="email" name="email" placeholder="Enter Your Email">
-                                <input type="submit" name="submit" value="Subscribe Now">
-                            </div>
-                        </form>
-                    </div>
+                <div class="section-wrapper" style="opacity:0">
+
                 </div>
             </div>
         </div>
@@ -165,97 +164,11 @@
 
         <!-- Footer Section Start Here -->
         <footer>
-            <div class="footer-top padding-tb pt-0">
-                <div class="container">
-                    <div class="row g-4 row-cols-xl-4 row-cols-md-2 row-cols-1 justify-content-center">
-                        <div class="col">
-                            <div class="footer-item">
-                                <div class="footer-inner">
-                                    <div class="footer-content">
-                                        <div class="title">
-                                            <h4>Site Map</h4>
-                                        </div>
-                                        <div class="content">
-                                            <ul class="lab-ul">
-                                                <li><a href="#">Documentation</a></li>
-                                                <li><a href="#">Feedback</a></li>
-                                                <li><a href="#">Plugins</a></li>
-                                                <li><a href="#">Support Forums</a></li>
-                                                <li><a href="#">Themes</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="footer-item">
-                                <div class="footer-inner">
-                                    <div class="footer-content">
-                                        <div class="title">
-                                            <h4>Useful Links</h4>
-                                        </div>
-                                        <div class="content">
-                                            <ul class="lab-ul">
-                                                <li><a href="#">About Us</a></li>
-                                                <li><a href="#">Help Link</a></li>
-                                                <li><a href="#">Terms & Conditions</a></li>
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">Privacy Policy</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="footer-item">
-                                <div class="footer-inner">
-                                    <div class="footer-content">
-                                        <div class="title">
-                                            <h4>Social Contact</h4>
-                                        </div>
-                                        <div class="content">
-                                            <ul class="lab-ul">
-                                                <li><a href="#">Facebook</a></li>
-                                                <li><a href="#">Twitter</a></li>
-                                                <li><a href="#">Instagram</a></li>
-                                                <li><a href="#">YouTube</a></li>
-                                                <li><a href="#">Github</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="footer-item">
-                                <div class="footer-inner">
-                                    <div class="footer-content">
-                                        <div class="title">
-                                            <h4>Our Support</h4>
-                                        </div>
-                                        <div class="content">
-                                            <ul class="lab-ul">
-                                                <li><a href="#">Help Center</a></li>
-                                                <li><a href="#">Paid with Mollie</a></li>
-                                                <li><a href="#">Status</a></li>
-                                                <li><a href="#">Changelog</a></li>
-                                                <li><a href="#">Contact Support</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="footer-bottom style-2">
                 <div class="container">
                     <div class="section-wrapper">
-                        <p>&copy; 2021 <a href="index.html">Edukon</a> Designed by <a
-                                href="https://themeforest.net/user/CodexCoder" target="_blank">CodexCoder</a> </p>
+                        <p>&copy; 2021 <a href="{{ route('home') }}">{{ config('app.name') }}</a> All Right Reserved
+                        </p>
                     </div>
                 </div>
             </div>

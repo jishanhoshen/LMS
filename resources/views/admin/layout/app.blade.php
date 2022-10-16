@@ -334,6 +334,13 @@
                                 <p>Categories</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('course') }}"
+                                class="nav-link {{ request()->is('admin/course') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>Course</p>
+                            </a>
+                        </li>
 
                         <li class="nav-item ">
                             <a href="#" class="nav-link ">

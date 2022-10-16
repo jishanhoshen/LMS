@@ -15,11 +15,9 @@
                 <div class="col-lg-5 col-12">
                     <div class="pageheader-content">
                         <div class="course-category">
-                            <a href="#" class="course-cate">Adobe XD</a>
-                            <a href="#" class="course-offer">30% Off</a>
+                            <a href="#" class="course-cate">{{ $course->category }}</a>
                         </div>
                         <h2 class="phs-title">{{ $course->name }}</h2>
-                        <p class="phs-desc">{{ $course->short_desc }}</p>
                         <div class="phs-thumb">
                             <img src="{{ asset('assets/images/pageheader/03.jpg') }}" alt="">
                             <span>Jhon</span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CourseController extends Controller
 {
@@ -15,8 +16,8 @@ class CourseController extends Controller
     public function all()
     {
         $courses = Course::select('*')->get();
-        
-        return view('course',['courses'=>$courses]);
+
+        return view('course', ['courses' => $courses]);
     }
     /**
      * Display a listing of the resource.
@@ -25,12 +26,12 @@ class CourseController extends Controller
      */
     public function single()
     {
-        $course = Course::select('*')->where('id',1)->get();
+        $course = Course::select('*')->where('id', 1)->get();
 
-        return view('course-single',['course'=>$course[0]]);
+        return view('course-single', ['course' => $course[0]]);
     }
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +43,7 @@ class CourseController extends Controller
         return view('course-view');
     }
 
-    
+
 
     /**
      * Display a listing of the resource.
@@ -51,7 +52,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        
+        return view('admin.course');
     }
 
     /**
@@ -61,7 +62,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.addcourse');
     }
 
     /**
@@ -72,7 +73,53 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'courseName' => 'required',
+            'courseDesc' => 'required',
+            'nowPrice' => 'required',
+            'courseCategory' => 'required',
+            'courseLevel' => 'required',
+            'courseIntro' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm|max:6144',
+            'courseThumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        $course = new Course();
+        $course->name = $request->courseName;
+        $course->category = $request->courseCategory;
+        $course->desc = $request->courseDesc;
+        $course->price = $request->nowPrice;
+
+        if ($request->has('oldPrice')) {
+            $course->old_price = $request->oldPrice;
+        }
+
+
+        if ($request->hasFile('courseThumbnail')) {
+            $image = $request->file('courseThumbnail');
+            $imageExt = $image->getClientOriginalExtension();
+            $imageName = 'course_' . $course->id . '.' . $imageExt;
+            $image->move(public_path() . '/assets/images/course/', $imageName);
+        } else {
+            $imageName = 'noimage';
+        }
+
+        if ($request->has('courseIntro')) {
+            $video = $request->file('courseIntro');
+            $videoExt = $video->getClientOriginalExtension();
+            $videoName = 'course_' . $course->id . '.' . $videoExt;
+            $video->move(public_path() . '/assets/videos/course/', $videoName);
+        } else {
+            $videoName = 'novideo';
+        }
+
+        return response()->json([
+            "data" => $data,
+            "image" => $imageName,
+            "video" => $request->file('courseIntro'),
+            "short_desc" =>  $short_text
+        ]);
     }
 
     /**

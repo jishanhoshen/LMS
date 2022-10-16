@@ -18,7 +18,7 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('category');
-            $table->string('short_desc');
+            $table->string('short_desc')->nullable();
             $table->text('desc')->nullable();
             $table->string('thumbnail');
             $table->string('intro')->default(0);

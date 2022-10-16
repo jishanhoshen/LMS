@@ -45,12 +45,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::delete('delete/{id}', [ServiceController::class, 'destroy'])->name('destroyService');
     });
 
-    Route::prefix('portfolio')->group(function () {
-        Route::get('/', [PortfolioController::class, 'index'])->name('portfolio');
-        Route::get('add', [PortfolioController::class, 'create'])->name('addPortfolio');
-        Route::post('store', [PortfolioController::class, 'store'])->name('storePortfolio');
-        Route::post('thumb', [PortfolioController::class, 'setThumb'])->name('addthumbPortfilio');
+    Route::prefix('course')->group(function ()
+    {
+        Route::get('/', [CourseController::class, 'index'])->name('course');
+        Route::get('/add', [CourseController::class, 'create'])->name('add-course');
+        Route::post('/store', [CourseController::class, 'store'])->name('storeCourse');
     });
+
     Route::prefix('setting')->group(function () {
         Route::get('/', [SettingController::class, 'index'])->name('setting');
         Route::post('settingUpdate', [SettingController::class, 'settingUpdate'])->name('settingUpdate');
