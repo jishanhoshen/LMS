@@ -117,8 +117,7 @@ class CourseController extends Controller
         return response()->json([
             "data" => $data,
             "image" => $imageName,
-            "video" => $request->file('courseIntro'),
-            "short_desc" =>  $short_text
+            "video" => $request->file('courseIntro')
         ]);
     }
 

@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('registration', [AuthController::class, 'registerView'])->name('registration');
 Route::post('registration', [AuthController::class, 'create'])->name('createUser');
+Route::get('verifiaction', [AuthController::class, 'verifyView'])->name('verify');
+Route::post('verify', [AuthController::class, 'verify'])->name('verifyOtp');
 
 
 Route::get('/clear/route', [ConfigController::class, 'clearRoute']);

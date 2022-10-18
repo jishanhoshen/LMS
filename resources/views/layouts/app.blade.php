@@ -15,8 +15,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet">
+
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/progress.js') }}"></script>
+    <script src="{{ asset('assets/js/lightcase.js') }}"></script>
+    <script src="{{ asset('assets/js/counter-up.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.js') }}"></script>
+    <script src="{{ asset('assets/js/functions.js') }}"></script>
 </head>
 
 <body>
@@ -57,13 +66,13 @@
                             <p>Find us on : </p>
                         </li>
                         @foreach (json_decode($config->social) as $key => $item)
-                            @if ($key == 'facebook')
-                                <li><a href="{{ $item }}" class="fb"><i class="icofont-facebook-messenger"></i></a></li>
-                            @elseif($key == 'twitter')
-                                <li><a href="{{ $item }}" class="twitter"><i class="icofont-twitter"></i></a></li>
-                            @elseif($key == 'instagram')
-                                <li><a href="{{ $item }}" class="instagram"><i class="icofont-instagram"></i></a></li>
-                            @endif
+                        @if ($key == 'facebook')
+                        <li><a href="{{ $item }}" class="fb"><i class="icofont-facebook-messenger"></i></a></li>
+                        @elseif($key == 'twitter')
+                        <li><a href="{{ $item }}" class="twitter"><i class="icofont-twitter"></i></a></li>
+                        @elseif($key == 'instagram')
+                        <li><a href="{{ $item }}" class="instagram"><i class="icofont-instagram"></i></a></li>
+                        @endif
                         @endforeach
                     </ul>
                 </div>
@@ -73,8 +82,7 @@
             <div class="container">
                 <div class="header-wrapper">
                     <div class="logo">
-                        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/' . $config->logo) }}"
-                                alt="{{ config('app.name') . '-logo' }}"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/' . $config->logo) }}" alt="{{ config('app.name') . '-logo' }}"></a>
                     </div>
                     <div class="menu-area">
                         <div class="menu">
@@ -89,38 +97,34 @@
 
                                 <li><a href="contact.html">Contact</a></li>
                                 @guest
-                                    @if (Route::has('login'))
-                                        <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i>
-                                            <span>LOG
-                                                IN</span></a>
-                                    @endif
+                                @if (Route::has('login'))
+                                <a href="{{ route('login') }}" class="login"><i class="icofont-user"></i>
+                                    <span>LOG
+                                        IN</span></a>
+                                @endif
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('registration') }}" class="signup"><i class="icofont-users"></i>
-                                            <span>SIGN
-                                                UP</span> </a>
-                                    @endif
+                                @if (Route::has('register'))
+                                <a href="{{ route('registration') }}" class="signup"><i class="icofont-users"></i>
+                                    <span>SIGN
+                                        UP</span> </a>
+                                @endif
                                 @else
-                                    <li class="nav-item dropdown">
-                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
-                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
                                         </a>
 
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                    </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
                                 @endguest
                             </ul>
                         </div>
@@ -178,16 +182,6 @@
         <!-- Footer Section Ending Here -->
     </div>
     <!-- footer -->
-
-
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/progress.js') }}"></script>
-    <script src="{{ asset('assets/js/lightcase.js') }}"></script>
-    <script src="{{ asset('assets/js/counter-up.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.pkgd.js') }}"></script>
-    <script src="{{ asset('assets/js/functions.js') }}"></script>
 
 </body>
 

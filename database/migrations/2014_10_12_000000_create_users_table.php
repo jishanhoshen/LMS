@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role');
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->boolean('isPhoneVerified')->default(false);
         });
     }

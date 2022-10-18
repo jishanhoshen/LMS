@@ -8,15 +8,22 @@
     </div>
     <!-- Page Header section ending here -->
 
+
     <!-- Login Section Section Starts Here -->
     <div class="login-section padding-tb section-bg">
         <div class="container">
             <div class="account-wrapper">
                 <h3 class="title">{{ __('Login') }}</h3>
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <form class="account-form" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="email" class="col-md-4 col-form-label text-md-start d-block">{{ __('Email Address') }}</label>
+                        <label for="email"
+                            class="col-md-4 col-form-label text-start d-block">{{ __('Email Address') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                         @error('email')
@@ -26,7 +33,8 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-md-4 col-form-label text-md-start d-block">{{ __('Password') }}</label>
+                        <label for="password"
+                            class="col-md-4 col-form-label text-start d-block">{{ __('Password') }}</label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                             name="password" required autocomplete="current-password">
                         @error('password')
@@ -58,7 +66,8 @@
                     </div>
                 </form>
                 <div class="account-bottom">
-                    <span class="d-block cate pt-10">Don’t Have any Account? <a href="">Sign Up</a></span>
+                    <span class="d-block cate pt-10">Don’t Have any Account? <a href="{{ route('registration') }}">Sign
+                            Up</a></span>
                     <span class="or"><span>or</span></span>
                     <h5 class="subtitle">Login With Social Media</h5>
                     <ul class="lab-ul social-icons justify-content-center">
@@ -83,5 +92,4 @@
         </div>
     </div>
     <!-- Login Section Section Ends Here -->
-
 @endsection
