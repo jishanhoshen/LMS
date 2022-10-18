@@ -343,7 +343,7 @@
                                     </div>
                                 </div>
                                 <div class="course-enroll">
-                                    <a href="#" class="lab-btn"><span>Enrolled Now</span></a>
+                                    <a href="{{ route('enrol') }}" class="lab-btn"><span>Enrolled Now</span></a>
                                 </div>
                             </div>
                         </div>

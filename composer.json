@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
+        "nexmo/laravel": "^3.0",
         "yajra/laravel-datatables": "^1.5"
     },
     "require-dev": {

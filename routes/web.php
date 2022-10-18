@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('registration', [AuthController::class, 'registerView'])->name('registration');
+Route::post('registration', [AuthController::class, 'create'])->name('createUser');
+
+
 Route::get('/clear/route', [ConfigController::class, 'clearRoute']);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -27,7 +34,23 @@ Route::prefix('course')->group(function () {
     Route::get('{id}', [CourseController::class, 'single'])->name('single_course');
 });
 
+
+Route::get('enrol', function ()
+{
+    if(Auth::user()){
+        echo 'Registered user';
+    }else{
+        echo 'unknown user';
+    }
+})->name('enrol');
+
 Auth::routes();
+
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+  ]);
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     route::get('/', function () {
@@ -57,3 +80,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('settingUpdate', [SettingController::class, 'settingUpdate'])->name('settingUpdate');
     });
 });
+
+
+

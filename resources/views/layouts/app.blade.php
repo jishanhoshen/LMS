@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -70,8 +73,7 @@
             <div class="container">
                 <div class="header-wrapper">
                     <div class="logo">
-                        <?php $logo = '01.png'; ?>
-                        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/' . $logo) }}"
+                        <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo/' . $config->logo) }}"
                                 alt="{{ config('app.name') . '-logo' }}"></a>
                     </div>
                     <div class="menu-area">
@@ -94,7 +96,7 @@
                                     @endif
 
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="signup"><i class="icofont-users"></i>
+                                        <a href="{{ route('registration') }}" class="signup"><i class="icofont-users"></i>
                                             <span>SIGN
                                                 UP</span> </a>
                                     @endif

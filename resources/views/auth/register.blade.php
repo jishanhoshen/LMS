@@ -12,7 +12,7 @@
         <div class="container">
             <div class="account-wrapper">
                 <h3 class="title">{{ __('Register') }}</h3>
-                <form class="account-form" method="POST" action="{{ route('register') }}">
+                <form class="account-form" method="POST" action="{{ route('createUser') }}">
                     @csrf
                     <div class="form-group">
                         <label for="name" class="col-form-label text-md-start d-block">{{ __('Name') }}</label>
@@ -32,6 +32,18 @@
                             name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="col-form-label text-md-start d-block">{{ __('Phone') }}</label>
+
+                        <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror"
+                            name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+
+                        @error('phone')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
