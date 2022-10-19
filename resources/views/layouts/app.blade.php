@@ -67,7 +67,7 @@
                         </li>
                         @foreach (json_decode($config->social) as $key => $item)
                         @if ($key == 'facebook')
-                        <li><a href="{{ $item }}" class="fb"><i class="icofont-facebook-messenger"></i></a></li>
+                        <li><a href="{{ $item }}" class="fb"><i class="icofont-facebook"></i></a></li>
                         @elseif($key == 'twitter')
                         <li><a href="{{ $item }}" class="twitter"><i class="icofont-twitter"></i></a></li>
                         @elseif($key == 'instagram')

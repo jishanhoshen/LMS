@@ -52,7 +52,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('admin.course');
+        $courses = '';
+        if (Course::exists()) {
+            $courses = Course::select('id,name,thumbnail')->where('status','1')->get();
+        }
+        
+        return view('admin.course', ['courses' => $courses]); 
     }
 
     /**
@@ -85,39 +90,39 @@ class CourseController extends Controller
 
         $data = $request->all();
 
-        $course = new Course();
-        $course->name = $request->courseName;
-        $course->category = $request->courseCategory;
-        $course->desc = $request->courseDesc;
-        $course->price = $request->nowPrice;
+        // $course = new Course();
+        // $course->name = $request->courseName;
+        // $course->category = $request->courseCategory;
+        // $course->desc = $request->courseDesc;
+        // $course->price = $request->nowPrice;
 
-        if ($request->has('oldPrice')) {
-            $course->old_price = $request->oldPrice;
-        }
+        // if ($request->has('oldPrice')) {
+        //     $course->old_price = $request->oldPrice;
+        // }
 
 
-        if ($request->hasFile('courseThumbnail')) {
-            $image = $request->file('courseThumbnail');
-            $imageExt = $image->getClientOriginalExtension();
-            $imageName = 'course_' . $course->id . '.' . $imageExt;
-            $image->move(public_path() . '/assets/images/course/', $imageName);
-        } else {
-            $imageName = 'noimage';
-        }
+        // if ($request->hasFile('courseThumbnail')) {
+        //     $image = $request->file('courseThumbnail');
+        //     $imageExt = $image->getClientOriginalExtension();
+        //     $imageName = 'course_' . $course->id . '.' . $imageExt;
+        //     $image->move(public_path() . '/assets/images/course/', $imageName);
+        // } else {
+        //     $imageName = 'noimage';
+        // }
 
-        if ($request->has('courseIntro')) {
-            $video = $request->file('courseIntro');
-            $videoExt = $video->getClientOriginalExtension();
-            $videoName = 'course_' . $course->id . '.' . $videoExt;
-            $video->move(public_path() . '/assets/videos/course/', $videoName);
-        } else {
-            $videoName = 'novideo';
-        }
+        // if ($request->has('courseIntro')) {
+        //     $video = $request->file('courseIntro');
+        //     $videoExt = $video->getClientOriginalExtension();
+        //     $videoName = 'course_' . $course->id . '.' . $videoExt;
+        //     $video->move(public_path() . '/assets/videos/course/', $videoName);
+        // } else {
+        //     $videoName = 'novideo';
+        // }
 
         return response()->json([
             "data" => $data,
-            "image" => $imageName,
-            "video" => $request->file('courseIntro')
+            // "image" => $imageName,
+            // "video" => $request->file('courseIntro')
         ]);
     }
 

@@ -32,6 +32,7 @@ class CreateCoursesTable extends Migration
             $table->integer('passing')->default(0);
             $table->string('certificate')->nullable();
             $table->string('language')->nullable();
+            $table->integer('status')->default(1);
         });
     }
 
