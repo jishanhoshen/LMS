@@ -15,7 +15,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('services') }}">services</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('category') }}">categories</a></li>
                         <li class="breadcrumb-item active">edit</li>
                     </ol>
                 </div><!-- /.col -->
