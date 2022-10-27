@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class CourseController extends Controller
 {
@@ -24,9 +26,11 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function single()
+    public function single($id)
     {
-        $course = Course::select('*')->where('id', 1)->get();
+        $course = Course::select('courses.*', 'services.id as categoryId', 'services.name as categoryName')->where('courses.id', $id)
+        ->join('services','courses.category','=','services.id')
+        ->get();
 
         return view('course-single', ['course' => $course[0]]);
     }
@@ -54,10 +58,10 @@ class CourseController extends Controller
     {
         $courses = '';
         if (Course::exists()) {
-            $courses = Course::select('id,name,thumbnail')->where('status','1')->get();
+            $courses = Course::select('id,name,thumbnail')->where('status', '1')->get();
         }
         
-        return view('admin.course', ['courses' => $courses]); 
+        return view('admin.course', ['courses' => $courses]);
     }
 
     /**
@@ -67,7 +71,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.addcourse');
+        $categories = Service::all();
+        return view('admin.addcourse', ['categories' => $categories]);
     }
 
     /**
@@ -84,45 +89,55 @@ class CourseController extends Controller
             'nowPrice' => 'required',
             'courseCategory' => 'required',
             'courseLevel' => 'required',
-            'courseIntro' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm|max:6144',
+            'courseIntro' => 'mimes:mp4,ogx,oga,ogv,ogg,webm|max:6144',
             'courseThumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         $data = $request->all();
 
-        // $course = new Course();
-        // $course->name = $request->courseName;
-        // $course->category = $request->courseCategory;
-        // $course->desc = $request->courseDesc;
-        // $course->price = $request->nowPrice;
+        $course = new Course();
+        $course->name = $request->courseName;
+        $course->category = $request->courseCategory;
+        $course->desc = $request->courseDesc;
+        $course->price = $request->nowPrice;
+        $course->certificate = $request->courseCertificate;
+        $course->quizzes = $request->courseQuiz;
+        $course->level = $request->courseLevel;
+       
+        if($request->has('courseStatus') && $request->courseStatus == 'on'){
+            $course->status = 0;
+        }
 
-        // if ($request->has('oldPrice')) {
-        //     $course->old_price = $request->oldPrice;
-        // }
+        if ($request->has('oldPrice')) {
+            $course->old_price = $request->oldPrice;
+        }
+        $course->save();
 
+        if ($request->hasFile('courseThumbnail')) {
+            $image = $request->file('courseThumbnail');
+            $imageExt = $image->getClientOriginalExtension();
+            $imageName = 'course_' . $course->id . '.' . $imageExt;
+            $image->move(public_path() . '/assets/images/course/', $imageName);
+        } else {
+            $imageName = 'noimage';
+        }
 
-        // if ($request->hasFile('courseThumbnail')) {
-        //     $image = $request->file('courseThumbnail');
-        //     $imageExt = $image->getClientOriginalExtension();
-        //     $imageName = 'course_' . $course->id . '.' . $imageExt;
-        //     $image->move(public_path() . '/assets/images/course/', $imageName);
-        // } else {
-        //     $imageName = 'noimage';
-        // }
+        if ($request->has('courseIntro')) {
+            $video = $request->file('courseIntro');
+            $videoExt = $video->getClientOriginalExtension();
+            $videoName = 'course_' . $course->id . '.' . $videoExt;
+            $video->move(public_path() . '/assets/videos/course/', $videoName);
+        } else {
+            $videoName = 'novideo';
+        }
 
-        // if ($request->has('courseIntro')) {
-        //     $video = $request->file('courseIntro');
-        //     $videoExt = $video->getClientOriginalExtension();
-        //     $videoName = 'course_' . $course->id . '.' . $videoExt;
-        //     $video->move(public_path() . '/assets/videos/course/', $videoName);
-        // } else {
-        //     $videoName = 'novideo';
-        // }
+        $course->thumbnail = $imageName;
+        $course->intro = $videoName;
+        $course->save();
 
         return response()->json([
             "data" => $data,
-            // "image" => $imageName,
-            // "video" => $request->file('courseIntro')
+
         ]);
     }
 

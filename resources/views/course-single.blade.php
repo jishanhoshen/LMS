@@ -8,14 +8,14 @@
                 <div class="col-lg-7 col-12">
                     <div class="pageheader-thumb">
                         <img src="{{ asset('assets/images/course/' . $course->thumbnail) }}" alt="" class="w-100">
-                        <a href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg" class="video-button"
+                        <a href="{{ asset('assets/videos/course/' . $course->intro) }}" class="video-button"
                             data-rel="lightcase"><i class="icofont-ui-play"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-5 col-12">
                     <div class="pageheader-content">
                         <div class="course-category">
-                            <a href="#" class="course-cate">{{ $course->category }}</a>
+                            <a href="#" class="course-cate">{{ $course->categoryName }}</a>
                         </div>
                         <h2 class="phs-title">{{ $course->name }}</h2>
                         <div class="phs-thumb">
@@ -76,7 +76,7 @@
                                                     <div class="video-item-title">1.1 Welcome to the course 02:30 minutes
                                                     </div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -84,7 +84,7 @@
                                                     <div class="video-item-title">1.2 How to set up your photoshop workspace
                                                         08:33 minutes</div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -92,7 +92,7 @@
                                                     <div class="video-item-title">1.3 Essential Photoshop Tools 03:38
                                                         minutes</div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -100,7 +100,7 @@
                                                     <div class="video-item-title">1.4 Finding inspiration 02:30 minutes
                                                     </div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -108,7 +108,7 @@
                                                     <div class="video-item-title">1.5 Choosing Your Format 03:48 minutes
                                                     </div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -129,7 +129,7 @@
                                                     <div class="video-item-title">2.1 Using Adjustment Layers 06:20 minutes
                                                     </div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/http://192.168.0.195:8000/course/1"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -137,7 +137,7 @@
                                                     <div class="video-item-title">2.2 Building the composition 07:33
                                                         minutes</div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -145,7 +145,7 @@
                                                     <div class="video-item-title">2.3 Photoshop Lighting effects 06:30
                                                         minutes</div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -153,7 +153,7 @@
                                                     <div class="video-item-title">2.4 Digital Painting using photoshop
                                                         brushes 08:34 minutes</div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>
@@ -161,7 +161,7 @@
                                                     <div class="video-item-title">2.5 Finalizing the details 10:30 minutes
                                                     </div>
                                                     <div class="video-item-icon"><a
-                                                            href="https://www.youtube-nocookie.com/embed/jP649ZHA8Tg"
+                                                            href="https://www.youtube-nocookie.com/embed/"
                                                             data-rel="lightcase"><i class="icofont-play-alt-2"></i></a>
                                                     </div>
                                                 </li>

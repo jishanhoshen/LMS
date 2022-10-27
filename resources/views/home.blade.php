@@ -61,41 +61,6 @@
                             </div>
                         </div>
                     @endforeach
-                    {{-- <div class="swiper-slide">
-                                <div class="sponsor-iten">
-                                    <div class="sponsor-thumb">
-                                        <img src="assets/images/sponsor/02.png" alt="sponsor">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="sponsor-iten">
-                                    <div class="sponsor-thumb">
-                                        <img src="assets/images/sponsor/03.png" alt="sponsor">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="sponsor-iten">
-                                    <div class="sponsor-thumb">
-                                        <img src="assets/images/sponsor/04.png" alt="sponsor">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="sponsor-iten">
-                                    <div class="sponsor-thumb">
-                                        <img src="assets/images/sponsor/05.png" alt="sponsor">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="sponsor-iten">
-                                    <div class="sponsor-thumb">
-                                        <img src="assets/images/sponsor/06.png" alt="sponsor">
-                                    </div>
-                                </div>
-                            </div> --}}
                 </div>
             </div>
         </div>
@@ -192,7 +157,7 @@
                                 <div class="course-price">${{ $course->price }}</div>
                                 <div class="course-category justify-content-between mt-2 mb-4">
                                     <div class="course-cate">
-                                        <a href="#">{{ $course->category }}</a>
+                                        <a href="#">{{ $course->categoryName }}</a>
                                     </div>
                                     <div class="course-reiew">
                                         <span class="ratting">

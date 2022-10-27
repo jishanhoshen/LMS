@@ -100,13 +100,13 @@
 					frameborder: 0
 				},
 				flash: {
-					width: 400,
-					height: 205,
+					width: 800,
+					height: 500,
 					wmode: 'transparent'
 				},
 				video: {
-					width: 400,
-					height: 225,
+					width: 800,
+					height: 500,
 					poster: '',
 					preload: 'auto',
 					controls: true,

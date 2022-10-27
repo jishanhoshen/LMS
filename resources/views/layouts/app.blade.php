@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
@@ -25,7 +26,7 @@
     <script src="{{ asset('assets/js/lightcase.js') }}"></script>
     <script src="{{ asset('assets/js/counter-up.js') }}"></script>
     <script src="{{ asset('assets/js/isotope.pkgd.js') }}"></script>
-    <script src="{{ asset('assets/js/functions.js') }}"></script>
+
 </head>
 
 <body>
@@ -154,19 +155,6 @@
 
     <!-- footer -->
     <div class="news-footer-wrap">
-        <div class="fs-shape">
-            <img src="{{ asset('assets/images/shape-img/03.png') }}" alt="fst" class="fst-1">
-            <img src="{{ asset('assets/images/shape-img/04.png') }}" alt="fst" class="fst-2">
-        </div>
-        <!-- Newsletter Section Start Here -->
-        <div class="news-letter">
-            <div class="container">
-                <div class="section-wrapper" style="opacity:0">
-
-                </div>
-            </div>
-        </div>
-        <!-- Newsletter Section Ending Here -->
 
         <!-- Footer Section Start Here -->
         <footer>
@@ -182,7 +170,7 @@
         <!-- Footer Section Ending Here -->
     </div>
     <!-- footer -->
-
+    <script src="{{ asset('assets/js/functions.js') }}"></script>
 </body>
 
 </html>
