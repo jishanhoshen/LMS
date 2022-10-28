@@ -11,7 +11,7 @@ Learning Management System (LMS) is a sophisticated solution for planning, carry
 - 📫 You can reach me by searching on google.(jishan hoshen jibon)
 
 ## Live Priview
-[LMS](https://learn.braketit.com/)
+[Go Live - LMS](https://learn.braketit.com/)
 
 login
 
