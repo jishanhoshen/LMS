@@ -9,12 +9,14 @@ Learning Management System (LMS) is a sophisticated solution for planning, carry
 - 🌱 I’m currently learning REST API.
 - 💞️ I’m looking to collaborate on PHP
 - 📫 You can reach me by searching on google.(jishan hoshen jibon)
-## Roadmap
 
-- Additional browser support
+## Live Priview
+[LMS](https://learn.braketit.com/)
 
-- Add more integrations
+login
 
+email: jishanhoshenjibon@gmail.com
+password: 12345678
 
 ## Run Locally
 
