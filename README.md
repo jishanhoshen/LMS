@@ -15,8 +15,9 @@ Learning Management System (LMS) is a sophisticated solution for planning, carry
 
 login
 
-email: jishanhoshenjibon@gmail.com
-password: 12345678
+Email: jishanhoshenjibon@gmail.com
+
+Password: 12345678
 
 ## Run Locally
 
